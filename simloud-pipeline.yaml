@@ -1,0 +1,14 @@
+version: v1
+kind: simloud-pipeline
+
+pipeline:
+  default:                                          # profile name. Currently available only default value
+    - action: deploy,destroy
+      state: build,create,update,destroy
+      stages:
+        - name: "bash"
+          shell: bash                               # “bash” by default ( optional )
+          args: []                                  # shell arguments ( optional )
+          homedir: /home/jenkins/agent/workspace/generic-lambda
+          scripts:                                   # for “sh,bash,zsh” shells only
+            - ./simloud_ci.sh
